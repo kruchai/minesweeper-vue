@@ -1,0 +1,148 @@
+// Screen sizes.
+$screen-xs-max: 479px;
+$screen-sm-min: 576px;
+$screen-sm-max: 767px;
+$screen-md-min: 768px;
+$screen-md-max: 989px;
+$screen-lg-min: 990px;
+$screen-xl-min: 1170px;
+$max-layout-width: $screen-xl-min;
+$max-content-width: $max-layout-width;
+
+$screen-filters-mobile-max: 0 639px;
+$screen-filters-large: 640px;
+
+$screen-menu-mobile-max: 799px;
+$screen-menu-mobile: 0 $screen-menu-mobile-max;
+$screen-menu-medium: 0 989px;
+$screen-menu-full: $screen-menu-mobile-max + 1;
+
+// Small devices.
+@mixin xs-only {
+  @media (max-width: #{$screen-xs-max}) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+@mixin sm-only {
+  @media (max-width: #{$screen-sm-max}) {
+    @content;
+  }
+}
+
+// Medium devices.
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+@mixin md-only {
+  @media (max-width: #{$screen-md-max}) {
+    @content;
+  }
+}
+
+// Large devices.
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+@mixin menu-mobile {
+  @media (max-width: $screen-menu-mobile-max) {
+    @content;
+  }
+}
+
+@mixin menu-full {
+  @media (min-width: #{$screen-menu-full}) {
+    @content;
+  }
+}
+
+// Extra large devices.
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+@mixin container($padding: true) {
+  margin: 0 auto;
+  max-width: 100%;
+  overflow-x: hidden;
+  
+  @if $padding {
+    padding: 0 rem(15px);
+  }
+  
+  img {
+    max-width: 100%;
+  }
+  
+  @include md {
+    max-width: $screen-md-min;
+  }
+  @include lg {
+    max-width: $screen-lg-min;
+  }
+  @include xl {
+    max-width: rem(1140px);
+    @if $padding {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@mixin lg-flex {
+  @include lg {
+    @include flex-row;
+  }
+}
+
+@mixin tails($rows: 3) {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  transform: translateX(-15px);
+  width: calc(100% + 30px);
+  & > * {
+    margin: rem(15px);
+    width: calc((100% / #{$rows}) - 30px);
+  }
+}
+
+@mixin account-page-container {
+  padding: rem(40px) rem(16px);
+  
+  @include md {
+    padding: 0 rem(30px);
+  }
+}
+
+%Edna_ContainerFluid {
+  padding: 0 rem(30px);
+}
+
+.container {
+  @include container;
+}
+
+.container-fluid {
+  @extend %Edna_ContainerFluid;
+}
