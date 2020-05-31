@@ -1,28 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header
+      logoAlt="Minesweeper"
+      appTitle="Minesweeper on VueJS 3"
+      appUri="https://github.com/OlegScout/minesweeper-vue"
+    />
+    <Message msg="Welcome to My Vue.js App" status="Work In Progress ...." />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import Header from "./components/Header.vue";
+import Header from "./components/Header.vue";
+import Message from "./components/Message.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    Header,
+    Message
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+  @import "./styles/styles";
 </style>

@@ -1,0 +1,30 @@
+/// Check if unit is valid
+@function valid-unit($value) {
+  $str-value: $value + unquote('');
+  @if str-index($str-value, ',') {
+    //$str-value: str-slice($str-value, 1,str-index($str-value, ',') - 1);
+    @error 'ERROR: Unit Failure on: #{$value}';
+    @return false;
+  }
+  
+  @return true;
+}
+
+/// Converts units from pixels to REMs
+/// @example scss - Basic Usage Sass
+///   .my-module {
+///     font-size: rem(24px);
+///   }
+///
+/// @example scss - Basic Usage CSS Output
+///   .my-module {
+///     font-size: 1.5rem;
+///   }
+/// @require $fs-base
+/// @param {string} $px - pixel units to convert
+/// @param {string} $base [16px] - base font size
+@function rem($px, $base: $fs-base) {
+  @if valid-unit($px) {
+    @return ($px / $base) * 1rem;
+  }
+}
