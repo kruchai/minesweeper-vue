@@ -1,3 +1,9 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -5,5 +11,98 @@
   text-align: center;
   //this is where we use the variable
   color: $primary;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: auto;
+  padding-bottom: rem(20px);
+  
+  .footer-message {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    
+    img {
+      max-height: rem(25px);
+      padding: 0 rem(5px);
+    }
+  }
+}
+
+.battleground {
+  display: grid;
+  //grid-template-columns: repeat(10, 1fr);
+  //grid-template-rows: repeat(10, 1fr);
+  margin: rem(20px) auto;
+  background: linear-gradient(rgb(26, 109, 255) -0.42%, rgb(200, 34, 255) 100.42%);
+  width: initial;
+  
+  &.show-all {
+    background: none;
+  
+    ~ .restart {
+      margin: 0 auto;
+      display: inline-block;
+    }
+    
+    .child-cell {
+      background-color: #eee;
+    }
+  
+    [data-bomb=bomb] {
+      > .child-cell {
+        background-color: red;
+      }
+    }
+  }
+  
+  ~ .restart {
+    display: none;
+  }
+  
+  .parent-cell {
+    position: relative;
+    outline: 1px solid #fff;
+    transition: ease-in-out 0.5s;
+    display: inline-block;
+    
+    &:hover {
+      background-color: #fff;
+      opacity: 0.33;
+    }
+ 
+    .child-cell {
+      font-size: 0;
+      height: rem(40px);
+      width: 100%;
+      z-index: 2;
+      cursor: pointer;
+    }
+  
+    .clicked {
+      background-color: #eee;
+    }
+    
+  }
+  
+  [data-bomb=bomb] {
+    > .clicked {
+      background-color: red;
+  
+      //background-image: url(../assets/flag.png);
+    }
+  }
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
