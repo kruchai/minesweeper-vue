@@ -6,30 +6,17 @@
       appUri="https://github.com/OlegScout/minesweeper-vue"
     />
     <Message :msg="message" :status="status" />
-<!--    <Battleground />-->
-      <div class="settings">
-        <label for="setRows">Set number of rows</label>
-        <input id="setRows" v-model="setNumberOfRows" type="number" placeholder="Set number of rows">
-        <label for="setColumns">Set number of columns</label>
-        <input id="setColumns" v-model="setNumberOfColumns" type="number" placeholder="Set number of columns">
-        <label for="setBombs">Set bombs possibility percentage, %</label>
-        <input id="setBombs" v-model="setNumberOfBombs" type="number" placeholder="Set number of bombs">
-      </div>
-
-    <div
-      id="battleground"
-      class="battleground"
-      v-bind:style = "{'grid-template-columns': 'repeat(' + this.setNumberOfRows +', 40px)', 'grid-template-rows': 'repeat(' + this.setNumberOfColumns +', 40px)' }"
-      >
-      <div
-        class="parent-cell"
-        :data-bomb="Math.random() <= setNumberOfBombs / 100 ? 'bomb' : ''"
-        v-for="cell in getCountOfCells()" :key="cell"
-      >
-        <div class="child-cell" @click="isClicked($event)"></div>
-      </div>
-
+    <div class="settings">
+      <label for="setRows">Set number of rows</label>
+      <input id="setRows" v-model="setNumberOfRows" type="number" placeholder="Set number of rows">
+      <label for="setColumns">Set number of columns</label>
+      <input id="setColumns" v-model="setNumberOfColumns" type="number" placeholder="Set number of columns">
+      <label for="setBombs">Set bombs possibility percentage, %</label>
+      <input id="setBombs" v-model="setNumberOfBombs" type="number" placeholder="Set number of bombs">
     </div>
+
+    <Battleground :rows="this.setNumberOfRows" :columns="this.setNumberOfColumns" :bombsPercentage="this.setNumberOfBombs" />
+
     <button class="restart" @click="reloadTheGame()">Restart</button>
     <Footer />
   </div>
@@ -39,7 +26,7 @@
 
 import Header from "./components/Header.vue";
 import Message from "./components/Message.vue";
-// import Battleground from "./components/Battleground.vue";
+import Battleground from "./components/Battleground.vue";
 import Footer from "./components/Footer.vue";
 
 export default {
@@ -47,7 +34,7 @@ export default {
   components: {
     Header,
     Message,
-    // Battleground,
+    Battleground,
     Footer,
   },
   data() {
@@ -60,18 +47,6 @@ export default {
     };
   },
   methods: {
-    isClicked(event) {
-      event.target.classList.add('clicked');
-      console.log(event);
-
-      if (event.path[1].dataset.bomb === 'bomb') {
-        alert('Sorry, you lost =(');
-        event.path[2].classList.add('show-all');
-      }
-    },
-    getCountOfCells(rows = this.setNumberOfRows, columns = this.setNumberOfColumns) {
-      return rows * columns;
-    },
     reloadTheGame() {
       location.reload();
       return false;
