@@ -26,7 +26,7 @@
         :data-bomb="Math.random() <= setNumberOfBombs / 100 ? 'bomb' : ''"
         v-for="cell in getCountOfCells()" :key="cell"
       >
-        <div class="child-cell" @click="clicked($event)"></div>
+        <div class="child-cell" @click="isClicked($event)"></div>
       </div>
 
     </div>
@@ -60,7 +60,7 @@ export default {
     };
   },
   methods: {
-    clicked(event) {
+    isClicked(event) {
       event.target.classList.add('clicked');
       console.log(event);
 
