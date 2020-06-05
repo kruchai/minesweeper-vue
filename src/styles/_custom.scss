@@ -39,7 +39,7 @@ body {
   display: grid;
   //grid-template-columns: repeat(10, 1fr);
   //grid-template-rows: repeat(10, 1fr);
-  margin: 0 auto;
+  margin: rem(20px) auto;
   background: linear-gradient(rgb(26, 109, 255) -0.42%, rgb(200, 34, 255) 100.42%);
   width: initial;
   
@@ -94,7 +94,15 @@ body {
   [data-bomb=bomb] {
     > .clicked {
       background-color: red;
+  
+      //background-image: url(../assets/flag.png);
     }
   }
 }
 
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
