@@ -9,11 +9,38 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  //this is where we use the variable
   color: $primary;
   display: flex;
   flex-direction: column;
   min-height: 100%;
+}
+
+.header {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: rgba(3,27,78,0.1) 0 rem(2px) rem(4px);
+  height: rem(60px);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: 100%;
+  
+  img {
+    padding: 0 rem(30px);
+    max-width: rem(40px);
+  
+    &.img {
+      padding-left: 0;
+      max-width: rem(30px);
+    }
+  }
+  
+  .title {
+    margin-right: auto;
+  }
+  
+  .rules {
+    padding: 0 rem(30px) 0 0;
+  }
 }
 
 .footer {
@@ -39,7 +66,7 @@ body {
   display: grid;
   //grid-template-columns: repeat(10, 1fr);
   //grid-template-rows: repeat(10, 1fr);
-  margin: rem(20px) auto;
+  margin: auto;
   background: linear-gradient(rgb(26, 109, 255) -0.42%, rgb(200, 34, 255) 100.42%);
   width: initial;
   
@@ -57,7 +84,15 @@ body {
   
     [data-bomb=bomb] {
       > .child-cell {
-        background-color: red;
+        background-color: rgba(255, 0, 0, 1);
+        background-image: url('./assets/naval_mine.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        
+        &.flagged {
+          background-image: url('./assets/flag.png');
+          background-color: rgba(255, 0, 0, 0.4);
+        }
       }
     }
   }
@@ -88,21 +123,110 @@ body {
     .clicked {
       background-color: #eee;
     }
-    
+  
+    .flagged {
+      background-color: rgba(255, 255, 0, 1);
+      background-image: url('./assets/flag.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
   }
   
   [data-bomb=bomb] {
     > .clicked {
-      background-color: red;
-  
-      //background-image: url(../assets/flag.png);
+      background-color: rgba(255, 0, 0, 0.7);
+      background-image: url('./assets/naval_mine.png');
+      background-repeat: no-repeat;
+      background-size: contain;
     }
   }
 }
 
 .settings {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  visibility: hidden;
+  position: absolute;
+  margin: auto;
+  
+  &.show-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    visibility: visible;
+    background-color: #fff;
+    right: rem(15px);
+    top: rem(75px);
+    padding: rem(30px) rem(15px);
+    z-index: 3;
+    border-radius: rem(10px);
+    box-shadow: rgba(3,27,78,0.1) 0 rem(2px) rem(4px);
+  }
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  color: inherit;
+  vertical-align: baseline;
+  outline: none;
+  text-decoration: none;
+  transition: all .3s;
+  background: none;
+}
+
+.btn {
+  min-width: 140px;
+  height: 42px;
+  min-height: 42px;
+  padding: 0 24px;
+  border-radius: 25px;
+  text-align: center;
+  white-space: nowrap;
+  outline: none;
+  letter-spacing: 2px;
+  transition: .3s;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: sans-serif, Arial;
+  font-size: rem(16px);
+  
+  &:not(button) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.btn-gradient {
+  position: relative;
+  color: #fff;
+  
+  &:after {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    background: linear-gradient(60deg, rgba(245, 184, 255, .9) 28%, rgba(111, 136, 255, .9) 50%, rgba(94, 255, 231, .9) 75%, rgba(245, 184, 255, .9) 96%);
+    background-size: 300%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transition: filter .3s linear;
+    will-change: filter;
+    border-radius: 25px;
+    animation: btn-gradient 16s linear infinite;
+    filter: blur(8px);
+  }
+  
+  &:hover {
+    &:after {
+      filter: blur(0);
+    }
+  }
 }

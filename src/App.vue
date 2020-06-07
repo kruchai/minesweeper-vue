@@ -2,10 +2,9 @@
   <div id="app">
     <Header
       logoAlt="Minesweeper"
-      appTitle="Minesweeper on VueJS 3"
+      appTitle="Minesweeper on VueJS 3 (ßeta)"
       appUri="https://github.com/OlegScout/minesweeper-vue"
     />
-    <Message :msg="message" :status="status" />
     <div class="settings">
       <label for="setRows">Set number of rows</label>
       <input id="setRows" v-model="setNumberOfRows" type="number" placeholder="Set number of rows">
@@ -17,7 +16,10 @@
 
     <Battleground :rows="this.setNumberOfRows" :columns="this.setNumberOfColumns" :bombsPercentage="this.setNumberOfBombs" />
 
-    <button class="restart" @click="reloadTheGame()">Restart</button>
+    <!--  Start the game CTA  -->
+    <!--    <button class="btn btn-gradient start" @click="loadTheGame()">Start the game</button>-->
+    <!--  Restart CTA  -->
+    <button class="btn btn-gradient restart" @click="reloadTheGame()">Restart</button>
     <Footer />
   </div>
 </template>
@@ -25,7 +27,6 @@
 <script>
 
 import Header from "./components/Header.vue";
-import Message from "./components/Message.vue";
 import Battleground from "./components/Battleground.vue";
 import Footer from "./components/Footer.vue";
 
@@ -33,9 +34,8 @@ export default {
   name: "App",
   components: {
     Header,
-    Message,
     Battleground,
-    Footer,
+    Footer
   },
   data() {
     return {
@@ -43,10 +43,13 @@ export default {
       status: 'Click on each cell you want',
       setNumberOfBombs: 10,
       setNumberOfRows: 10,
-      setNumberOfColumns: 10,
+      setNumberOfColumns: 10
     };
   },
   methods: {
+    // loadTheGame() {
+    //   console.log('Start the game')
+    // },
     reloadTheGame() {
       location.reload();
       return false;
