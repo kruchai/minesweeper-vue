@@ -7,10 +7,10 @@
   >
     <div
       class="parent-cell"
-      :data-bomb="Math.random() <= bombsPercentage / 100 ? 'bomb' : ''"
+      :data-bomb="Math.random() <= bombsPercentage / 100 ? 'bomb' : 'clear'"
       v-for="cell in getCountOfCells()" :key="cell"
     >
-      <div class="child-cell" @click="clicked($event)"></div>
+      <div class="child-cell" @contextmenu.prevent="isRightClicked($event)" @click="isClicked($event)"></div>
     </div>
 
   </div>
@@ -21,7 +21,8 @@
     name: "Battleground",
     data() {
       return {
-        msgLost: 'Sorry, you lost'
+        msgLost: 'Sorry, you lost 💩💩💩',
+        msgWin: 'You are winner 😎🥳👊🤩'
       };
     },
     props: {
@@ -30,14 +31,18 @@
       bombsPercentage: Number
     },
     methods: {
-      clicked(event) {
-        event.target.classList.add('clicked');
-        console.log(event);
-
+      isClicked(event) {
         if (event.path[1].dataset.bomb === 'bomb') {
-          alert('Sorry, you lost =(');
+          alert(this.msgLost);
           event.path[2].classList.add('show-all');
         }
+
+        if (!event.target.classList.contains('flagged')) {
+          event.target.classList.add('clicked');
+        }
+      },
+      isRightClicked(event) {
+        event.target.classList.add('flagged');
       },
       getCountOfCells(rows = this.rows, columns = this.columns) {
         return rows * columns;

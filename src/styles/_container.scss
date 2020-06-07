@@ -135,7 +135,7 @@ $screen-menu-full: $screen-menu-mobile-max + 1;
   }
 }
 
-%Edna_ContainerFluid {
+@mixin container-fluid {
   padding: 0 rem(30px);
 }
 
@@ -144,5 +144,5 @@ $screen-menu-full: $screen-menu-mobile-max + 1;
 }
 
 .container-fluid {
-  @extend %Edna_ContainerFluid;
+  @include container-fluid;
 }
