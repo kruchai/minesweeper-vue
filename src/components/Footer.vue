@@ -7,7 +7,7 @@
     <div class="footer-year">
       <a href="https://olegkruchay.com">olegkruchay.com</a> © 2020
     </div>
-    <p><a href="https://icons8.com/icon/118527/icons8">Icons8 icon by Icons8</a></p>
+    <p><a href="https://icons8.com/license">Icons by Icons8 (Free license).</a></p>
   </div>
 </template>
 

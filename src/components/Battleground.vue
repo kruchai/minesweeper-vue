@@ -32,9 +32,9 @@
     },
     methods: {
       isClicked(event) {
-        if (event.path[1].dataset.bomb === 'bomb') {
+        if (event.target.parentNode.dataset.bomb === 'bomb') {
           alert(this.msgLost);
-          event.path[2].classList.add('show-all');
+          event.target.parentNode.parentNode.classList.add('show-all');
         }
 
         if (!event.target.classList.contains('flagged')) {
@@ -42,7 +42,7 @@
         }
       },
       isRightClicked(event) {
-        event.target.classList.add('flagged');
+        event.target.classList.toggle('flagged');
       },
       getCountOfCells(rows = this.rows, columns = this.columns) {
         return rows * columns;
