@@ -1,24 +1,5 @@
-# miner-vue
+# Minesweeper on VueJS (ßeta)
 
-## Project setup
-```
-yarn install
-```
+Made by Oleg Kruchay 2020
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Using Icons 8 free license (https://icons8.com/license)
