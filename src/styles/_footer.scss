@@ -1,0 +1,18 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: auto;
+  padding-bottom: rem(20px);
+  
+  .footer-message {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    
+    img {
+      max-height: rem(25px);
+      padding: 0 rem(5px);
+    }
+  }
+}
