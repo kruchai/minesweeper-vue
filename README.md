@@ -1,4 +1,4 @@
-# ⛳️ The Minesweeper game | hub.olegkruchay.com/minesweeper
+# ⛳️ The Minesweeper game | hub.olegkruchay.com/minesweeper-vue
 
 ###### 🎭🎲️ Current version ```v0.4.1 ßeta```
 
