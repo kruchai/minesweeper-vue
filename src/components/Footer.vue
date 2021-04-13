@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <div class="footer">
     <div class="footer-message">
       <span>Made with</span><img src="../assets/heart.svg" alt="Oleg Kruchay" />
@@ -16,3 +16,7 @@ export default {
   name: "Footer"
 };
 </script>
+
+<style lang="scss" scoped>
+  @import "../styles/footer";
+</style>

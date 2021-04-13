@@ -1,0 +1,99 @@
+.battleground {
+  display: grid;
+  //grid-template-columns: repeat(10, 1fr);
+  //grid-template-rows: repeat(10, 1fr);
+  margin: auto;
+  background: linear-gradient(rgb(26, 109, 255) -0.42%, rgb(200, 34, 255) 100.42%);
+  width: initial;
+  
+  &.show-all {
+    background: none;
+    
+    ~ .restart {
+      margin: 0 auto;
+      display: inline-block;
+    }
+    
+    .child-cell {
+      background-color: #eee;
+    }
+    
+    [data-bomb=bomb] {
+      > .child-cell {
+        background-color: rgba(255, 0, 0, 1);
+        background-image: url('../assets/naval_mine.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        
+        &.flagged {
+          background-image: url('../assets/flag.png');
+          background-color: rgba(255, 0, 0, 0.4);
+        }
+      }
+    }
+  }
+  
+  ~ .restart {
+    display: none;
+  }
+  
+  .parent-cell {
+    position: relative;
+    outline: 1px solid #fff;
+    transition: ease-in-out 0.5s;
+    display: inline-block;
+    
+    &:hover {
+      background-color: #fff;
+      opacity: 0.33;
+    }
+    
+    .child-cell {
+      font-size: 0;
+      height: rem(40px);
+      width: 100%;
+      z-index: 2;
+      cursor: pointer;
+    }
+    
+    .clicked {
+      background-color: #eee;
+    }
+    
+    .flagged {
+      background-color: rgba(255, 255, 0, 1);
+      background-image: url('../assets/flag.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+  
+  [data-bomb=bomb] {
+    > .clicked {
+      background-color: rgba(255, 0, 0, 0.7);
+      background-image: url('../assets/naval_mine.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+  [data-bomb=near-bomb] {
+    > .child-cell {
+      &:after {
+        content: "1";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: rem(14px);
+        color: #00008B;
+        z-index: 0;
+      }
+    }
+    //> div {
+    //  &:after {
+    //    font-size: 0;
+    //    visibility: hidden;
+    //  }
+    //}
+  }
+}
